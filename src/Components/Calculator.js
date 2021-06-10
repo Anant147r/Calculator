@@ -1,6 +1,6 @@
 import React from "react";
 const Calculator = () => {
-  return <div>Hello</div>;
+  return <div>Helsdfsdlo</div>;
 };
 
 export default Calculator;
