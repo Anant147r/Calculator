@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Login from "./Login/Login";
+import Hero from "./Hero/Hero";
 import fire from "../fire";
 const MainComponent = () => {
   const [user, setUser] = useState("");
@@ -75,18 +76,22 @@ const MainComponent = () => {
   }, []);
   return (
     <div className="mainComponent">
-      <Login
-        email={email}
-        setEmail={setEmail}
-        password={password}
-        setPassword={setPassword}
-        handleLogin={handleLogin}
-        handleSignUp={handleSignUp}
-        hasAccount={hasAccount}
-        setHasAccout={setHasAccout}
-        emailError={emailError}
-        passwordError={passwordError}
-      />
+      {user ? (
+        <Hero handleLogout={handleLogout} />
+      ) : (
+        <Login
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          handleLogin={handleLogin}
+          handleSignUp={handleSignUp}
+          hasAccount={hasAccount}
+          setHasAccout={setHasAccout}
+          emailError={emailError}
+          passwordError={passwordError}
+        />
+      )}
     </div>
   );
 };
