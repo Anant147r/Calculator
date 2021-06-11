@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Login from "./Login/Login";
 import Hero from "./Hero/Hero";
 import fire from "../fire";
-const MainComponent = () => {
+const MainComponent = ({ valid }) => {
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,6 +34,8 @@ const MainComponent = () => {
           case "auth/wrong-password":
             setPassword(err.message);
             break;
+          default:
+            setEmailError(err.message);
         }
       });
   };
@@ -52,6 +54,8 @@ const MainComponent = () => {
           case "auth/weak-password":
             setPassword(err.message);
             break;
+          default:
+            setEmailError(err.message);
         }
       });
   };
@@ -60,18 +64,17 @@ const MainComponent = () => {
     fire.auth().signOut();
   };
 
-  const authListener = () => {
-    fire.auth().onAuthStateChanged((user) => {
-      if (user) {
-        clearInputs();
-        setUser(user);
-      } else {
-        setUser("");
-      }
-    });
-  };
-
   useEffect(() => {
+    const authListener = () => {
+      fire.auth().onAuthStateChanged((user) => {
+        if (user) {
+          clearInputs();
+          setUser(user);
+        } else {
+          setUser("");
+        }
+      });
+    };
     authListener();
   }, []);
   return (
