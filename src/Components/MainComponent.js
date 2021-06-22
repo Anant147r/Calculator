@@ -8,7 +8,7 @@ const MainComponent = ({ valid }) => {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [hasAccount, setHasAccout] = useState("");
+  const [hasAccount, setHasAccout] = useState(true);
 
   const clearInputs = () => {
     setEmail("");
@@ -24,6 +24,9 @@ const MainComponent = ({ valid }) => {
     fire
       .auth()
       .signInWithEmailAndPassword(email, password)
+      .then((cred) => {
+        // console.log(cred.user.uid);
+      })
       .catch((err) => {
         switch (err.code) {
           case "auth/invalid-email":
@@ -80,7 +83,7 @@ const MainComponent = ({ valid }) => {
   return (
     <div className="mainComponent">
       {user ? (
-        <Hero handleLogout={handleLogout} />
+        <Hero user={user} handleLogout={handleLogout} />
       ) : (
         <Login
           email={email}
