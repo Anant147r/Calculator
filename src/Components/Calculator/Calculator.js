@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import fire from "../../fire";
+// import fire from "../../fire";
 const Calculator = () => {
   const [items, setItemList] = useState([]);
   const [item, setItem] = useState("");
