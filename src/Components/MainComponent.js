@@ -9,6 +9,9 @@ const MainComponent = ({ valid }) => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [hasAccount, setHasAccout] = useState(true);
+  const [items, setItems] = useState();
+  const [activeUserEmail, setActiveUserEmail] = useState();
+  const db = fire.firestore();
 
   const clearInputs = () => {
     setEmail("");
@@ -25,7 +28,15 @@ const MainComponent = ({ valid }) => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((cred) => {
-        // console.log(cred.user.uid);
+        // const db = fire.firestore();
+        db.collection("users")
+          .doc(email)
+          .get()
+          .then((doc) => {
+            setItems(doc.data().items);
+            setActiveUserEmail(email);
+            // console.log(typeof email);
+          });
       })
       .catch((err) => {
         switch (err.code) {
@@ -48,6 +59,13 @@ const MainComponent = ({ valid }) => {
     fire
       .auth()
       .createUserWithEmailAndPassword(email, password)
+      .then((cred) => {
+        // console.log(cred.user.uid);
+        const db = fire.firestore();
+        db.collection("users").doc(email).set({
+          items: "",
+        });
+      })
       .catch((err) => {
         switch (err.code) {
           case "auth/email-already-in-use":
@@ -63,27 +81,54 @@ const MainComponent = ({ valid }) => {
       });
   };
 
-  const handleLogout = () => {
-    fire.auth().signOut();
-  };
+  const handleLogout = (items) => {
+    fire
+      .auth()
+      .signOut()
+      .then(() => {
+        // console.log(items);
+        var str = "";
+        items.forEach((item) => {
+          str = str + item;
+          str = str + ":";
+        });
+        db.collection("users").doc(activeUserEmail).set({ items: str });
+        setActiveUserEmail();
 
-  useEffect(() => {
-    const authListener = () => {
-      fire.auth().onAuthStateChanged((user) => {
-        if (user) {
-          clearInputs();
-          setUser(user);
-        } else {
-          setUser("");
-        }
+        // console.log(str);
       });
-    };
-    authListener();
+  };
+  useEffect(() => {
+    const unsubscribe = fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        clearInputs();
+        setUser(user);
+      } else {
+        setUser("");
+      }
+    });
+    return unsubscribe;
   }, []);
+  // useEffect(() => {
+  //   if (db) {
+  //     const unsubscribe = db
+  //       .collection("users")
+  //       .doc("anant@anant.com")
+  //       .onSnapshot((querySnapshot) => {
+  //         // const data = querySnapshot.docs.map((doc) => ({
+  //         //   ...doc.data(),
+  //         // }));
+  //         // console.log(data);
+  //         console.log(querySnapshot.data());
+  //       });
+  //     return unsubscribe;
+  //   }
+  // }, [db]);
+
   return (
     <div className="mainComponent">
       {user ? (
-        <Hero user={user} handleLogout={handleLogout} />
+        <Hero user={user} handleLogout={handleLogout} items={items} />
       ) : (
         <Login
           email={email}
