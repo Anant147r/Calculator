@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import fire from "../../fire";
+import "./Calculator.css";
 const Calculator = (props) => {
   // const [itemFromBackend, setItemFromBackend] = useState(props.items);
   const [items, setItemList] = useState([]);
@@ -40,7 +41,7 @@ const Calculator = (props) => {
     setItem(value);
   };
   const addItemHandler = () => {
-    setItemList([...items, item]);
+    setItemList([item, ...items]);
     setItem("");
   };
   const deleteItem = (value) => {
@@ -52,42 +53,71 @@ const Calculator = (props) => {
   return (
     <>
       {/* <div>{itemFromBackend}</div> */}
-      <input
-        style={{ marginRight: "1rem" }}
-        value={item}
-        onChange={(event) => {
-          changeItemHadler(event.target.value);
-        }}
-      />
-      <button
-        className="btn btn-success"
-        style={{ marignLeft: "2rem" }}
-        onClick={() => {
-          addItemHandler();
-        }}
-      >
-        Add
-      </button>
       <div
-        style={{ border: "1px solid black", marginTop: "2rem", height: "100%" }}
+      //  style={{ border: "1px solid grey" }}
       >
-        {items.map((value, index) => {
-          return (
-            <div key={index}>
-              <span>{value}</span>{" "}
-              <span>
-                <button
+        <input
+          style={{ marginRight: "1rem" }}
+          value={item}
+          onChange={(event) => {
+            changeItemHadler(event.target.value);
+          }}
+        />
+        <button
+          className="btn btn-success"
+          style={{ marignLeft: "2rem" }}
+          onClick={() => {
+            addItemHandler();
+          }}
+        >
+          Add Task
+        </button>
+        <div
+          style={{
+            border: "1px solid grey",
+            marginTop: "2rem",
+            borderRadius: "5px",
+            marginBottom: "1rem",
+            height: "22rem",
+            overflow: "scroll",
+          }}
+        >
+          {items.map((value, index) => {
+            return (
+              <div
+                key={index}
+                style={{ marginBottom: ".5rem", marginTop: ".5rem" }}
+              >
+                <div>{value}</div>{" "}
+                {/* <button
                   className="btn btn-danger"
+                  style={{ height: "2rem", alignItems: "center" }}
                   onClick={() => {
                     deleteItem(value);
                   }}
                 >
                   Delete
-                </button>
-              </span>{" "}
-            </div>
-          );
-        })}
+                </button> */}
+                <div
+                  className="handleHover"
+                  onClick={() => {
+                    deleteItem(value);
+                  }}
+                  style={{
+                    // border: "1px solid grey",
+                    maxWidth: "5rem",
+                    margin: "0 auto",
+                    borderRadius: "3px",
+                    backgroundColor: "#DC3545",
+                    marginBottom: ".5rem",
+                  }}
+                >
+                  Delete
+                </div>
+              </div>
+            );
+          })}
+        </div>
         <button
           className="btn btn-success"
           onClick={() => {

@@ -9,7 +9,7 @@ const Hero = ({ handleLogout, user, items }) => {
       className="hero"
       style={{
         border: "1px solid black",
-        height: "30rem",
+        height: "90vh",
         borderRadius: "5px",
       }}
     >
