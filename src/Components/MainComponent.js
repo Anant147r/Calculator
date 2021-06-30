@@ -46,7 +46,7 @@ const MainComponent = ({ valid }) => {
             setEmailError(err.message);
             break;
           case "auth/wrong-password":
-            setPassword(err.message);
+            setPasswordError(err.message);
             break;
           default:
             setEmailError(err.message);
