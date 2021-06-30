@@ -67,7 +67,7 @@ const Calculator = (props) => {
           className="btn btn-success"
           style={{ marignLeft: "2rem" }}
           onClick={() => {
-            addItemHandler();
+            if (item) addItemHandler();
           }}
         >
           Add Task
@@ -89,15 +89,6 @@ const Calculator = (props) => {
                 style={{ marginBottom: ".5rem", marginTop: ".5rem" }}
               >
                 <div>{value}</div>{" "}
-                {/* <button
-                  className="btn btn-danger"
-                  style={{ height: "2rem", alignItems: "center" }}
-                  onClick={() => {
-                    deleteItem(value);
-                  }}
-                >
-                  Delete
-                </button> */}
                 <div
                   className="handleHover"
                   onClick={() => {
