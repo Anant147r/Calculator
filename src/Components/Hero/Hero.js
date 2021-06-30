@@ -5,7 +5,14 @@ const Hero = ({ handleLogout, user, items }) => {
     // console.log(user.metadata.creationTime);
   }, []);
   return (
-    <section className="hero" style={{ border: "1px solid black" }}>
+    <section
+      className="hero"
+      style={{
+        border: "1px solid black",
+        height: "30rem",
+        borderRadius: "5px",
+      }}
+    >
       <nav style={{ margin: "2rem" }}>
         <h2>Welcome {user.email}</h2>
         {/* <button onClick={handleLogout}>Logout</button> */}

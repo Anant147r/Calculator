@@ -68,13 +68,16 @@ const Calculator = (props) => {
       >
         Add
       </button>
-      <div>
+      <div
+        style={{ border: "1px solid black", marginTop: "2rem", height: "100%" }}
+      >
         {items.map((value, index) => {
           return (
             <div key={index}>
               <span>{value}</span>{" "}
               <span>
                 <button
+                  className="btn btn-danger"
                   onClick={() => {
                     deleteItem(value);
                   }}
@@ -86,6 +89,7 @@ const Calculator = (props) => {
           );
         })}
         <button
+          className="btn btn-success"
           onClick={() => {
             props.handleLogout(items);
           }}
