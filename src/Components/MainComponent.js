@@ -65,6 +65,7 @@ const MainComponent = ({ valid }) => {
         db.collection("users").doc(email).set({
           items: "",
         });
+        setActiveUserEmail(email);
       })
       .catch((err) => {
         switch (err.code) {

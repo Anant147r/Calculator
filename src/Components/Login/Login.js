@@ -33,7 +33,7 @@ const Login = (props) => {
       </div>
       <div className="loginContainer">
         <label style={{ marginRight: "1rem", fontSize: "1.2rem" }}>
-          Username
+          Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </label>
         <input
           type="text"

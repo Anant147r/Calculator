@@ -53,12 +53,15 @@ const Calculator = (props) => {
     <>
       {/* <div>{itemFromBackend}</div> */}
       <input
+        style={{ marginRight: "1rem" }}
         value={item}
         onChange={(event) => {
           changeItemHadler(event.target.value);
         }}
       />
       <button
+        className="btn btn-success"
+        style={{ marignLeft: "2rem" }}
         onClick={() => {
           addItemHandler();
         }}
