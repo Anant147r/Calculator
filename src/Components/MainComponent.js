@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Login from "./Login/Login";
 import Hero from "./Hero/Hero";
 import fire from "../fire";
+import "./MainComponent.css";
 const MainComponent = ({ valid }) => {
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");

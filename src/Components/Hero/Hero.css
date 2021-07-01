@@ -1,0 +1,9 @@
+.hero {
+  border: 1px solid black;
+  height: 90vh;
+  border-radius: 5px;
+}
+
+.hero nav {
+  margin: 2rem;
+}

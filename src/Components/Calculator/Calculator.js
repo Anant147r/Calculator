@@ -54,53 +54,33 @@ const Calculator = (props) => {
     <>
       {/* <div>{itemFromBackend}</div> */}
       <div
-      //  style={{ border: "1px solid grey" }}
+        className="calculator"
+        //  style={{ border: "1px solid grey" }}
       >
         <input
-          style={{ marginRight: "1rem" }}
+          className="inputTask"
           value={item}
           onChange={(event) => {
             changeItemHadler(event.target.value);
           }}
         />
         <button
-          className="btn btn-success"
-          style={{ marignLeft: "2rem" }}
+          className="btn btn-success taskAddButton"
           onClick={() => {
             if (item) addItemHandler();
           }}
         >
           Add Task
         </button>
-        <div
-          style={{
-            border: "1px solid grey",
-            marginTop: "2rem",
-            borderRadius: "5px",
-            marginBottom: "1rem",
-            height: "22rem",
-            overflow: "scroll",
-          }}
-        >
+        <div className="tasks">
           {items.map((value, index) => {
             return (
-              <div
-                key={index}
-                style={{ marginBottom: ".5rem", marginTop: ".5rem" }}
-              >
+              <div className="eachTask" key={index}>
                 <div>{value}</div>{" "}
                 <div
-                  className="handleHover"
+                  className="handleHover deleteTask"
                   onClick={() => {
                     deleteItem(value);
-                  }}
-                  style={{
-                    // border: "1px solid grey",
-                    maxWidth: "5rem",
-                    margin: "0 auto",
-                    borderRadius: "3px",
-                    backgroundColor: "#DC3545",
-                    marginBottom: ".5rem",
                   }}
                 >
                   Delete

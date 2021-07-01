@@ -6,15 +6,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div
-      className="App"
-      style={{
-        // border: "1px solid black",
-        height: "100vh",
-        display: "grid",
-        placeItems: "center",
-      }}
-    >
+    <div className="App">
       <MainComponent />
       {/* <Calculator /> */}
     </div>

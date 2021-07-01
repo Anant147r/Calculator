@@ -14,25 +14,10 @@ const Login = (props) => {
     passwordError,
   } = props;
   return (
-    <section
-      className="login"
-      style={{
-        border: "1px solid grey",
-        paddingTop: "0rem",
-        paddingBottom: "3rem",
-        padding: "3rem",
-        maxWidth: "30rem",
-        margin: "0 auto",
-        borderRadius: "5px",
-      }}
-    >
-      <div
-        style={{ fontSize: "3rem", marginBottom: "2rem", marginTop: "2rem" }}
-      >
-        DO IT
-      </div>
+    <section className="login">
+      <div className="appTitle">DO IT</div>
       <div className="loginContainer">
-        <label style={{ marginRight: "1rem", fontSize: "1.2rem" }}>
+        <label className="loginLabel">
           Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </label>
         <input
@@ -45,9 +30,7 @@ const Login = (props) => {
           }}
         />
         <p className="errorMsg">{emailError}</p>
-        <label style={{ marginRight: "1rem", fontSize: "1.2rem" }}>
-          Password
-        </label>
+        <label className="loginLabel">Password</label>
         <input
           type="password"
           required
@@ -63,14 +46,13 @@ const Login = (props) => {
               <button className="btn btn-success" onClick={handleLogin}>
                 Sign In
               </button>
-              <p style={{ fontSize: "1rem" }} className="loginText">
+              <p className="loginText">
                 Don't have an account ?
                 <span
-                  className="handleHover"
+                  className="handleHover signButton"
                   onClick={() => {
                     setHasAccout(!hasAccount);
                   }}
-                  style={{ color: "blue" }}
                 >
                   Sign Up
                 </span>{" "}
@@ -87,8 +69,7 @@ const Login = (props) => {
                   onClick={() => {
                     setHasAccout(!hasAccount);
                   }}
-                  className="handleHover"
-                  style={{ color: "blue" }}
+                  className="handleHover signButton"
                 >
                   Sign In
                 </span>

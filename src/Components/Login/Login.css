@@ -1,6 +1,29 @@
-.handleHover:hover {
+.login {
+  border: 1px solid grey;
+  padding-top: 0rem;
+  padding-bottom: 3rem;
+  padding: 3rem;
+  max-width: 30rem;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.login .appTitle {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+.login .loginLabel {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+.login .handleHover:hover {
   cursor: pointer;
 }
-.loginText {
+.login .loginText {
+  font-size: 1rem;
   margin-top: 1rem;
+}
+.login .signButton {
+  color: blue;
 }
